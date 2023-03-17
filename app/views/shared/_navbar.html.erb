@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg bg-dark test-white py-3">
+  <div class="container">
+    <%= link_to "RAILS", root_path, class: "navbar-brand text-white" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
+      <span class="navbar-toggler-icon text-white"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to "Home", root_path, class: "nav-link text-white" %>
+        </li>
+        <% if Current.user %>
+          <% if Current.user[:username] == "admin" %>
+            <li class="nav-item">
+              <%= link_to "Inventory", root_path, class: "nav-link text-white" %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Cart", root_path, class: "nav-link text-white" %>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <% if Current.user %>
+          <li class="nav-item">
+            <%= link_to "Change Password", password_path, class: "btn btn-outline-light mx-3" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Logout", logout_path, class: "btn btn-light" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Sign In", signin_path, class: "btn btn-outline-light mx-3" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign Up", signup_path, class: "btn btn-outline-light" %>
+          </li>
+        <%end%>
+      </ul>
+    </div>
+  </div>
+</nav>
