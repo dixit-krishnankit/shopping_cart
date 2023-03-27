@@ -1,22 +1,24 @@
 <nav class="navbar navbar-expand-lg bg-dark test-white py-3">
   <div class="container">
-    <%= link_to "RAILS", root_path, class: "navbar-brand text-white" %>
+    <div class="navbar-brand text-white">RAILS</div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
       <span class="navbar-toggler-icon text-white"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbar">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <%= link_to "Home", root_path, class: "nav-link text-white" %>
-        </li>
-        <% if Current.user %>
-          <% if Current.user[:username] == "admin" %>
-            <li class="nav-item">
-              <%= link_to "Inventory", root_path, class: "nav-link text-white" %>
-            </li>
+        <% if Current.user && Current.user[:username] == "admin" %>
+          <li class="nav-item">
+            <%= link_to "Home", admin_path, class: "nav-link text-white" %>
+          </li>
           <% else %>
             <li class="nav-item">
-              <%= link_to "Cart", root_path, class: "nav-link text-white" %>
+              <%= link_to "Home", root_path, class: "nav-link text-white" %>
+            </li>
+          <% end %>
+        <% if Current.user %>
+          <% if Current.user[:username] != "admin" %>
+            <li class="nav-item">
+              <%= link_to "Cart", cart_path, class: "nav-link text-white" %>
             </li>
           <% end %>
         <% end %>

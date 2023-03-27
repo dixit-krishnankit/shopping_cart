@@ -7,7 +7,11 @@ class SessionsController < ApplicationController
 
     if (user.present? && user.authenticate(params[:password]))
       session[:user_id] = user.id
-      redirect_to root_path, notice: "Signed In successfully."
+      if (user[:username] == "admin")
+        redirect_to admin_path, notice: "Signed In successfully."
+      else
+        redirect_to root_path, notice: "Signed In successfully."
+      end
     else
       redirect_to signin_path, alert: "Invalid Username or Password"
     end

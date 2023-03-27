@@ -1,12 +1,14 @@
 <div class="container">
   <% if flash.now[:notice] %>
-    <div class="alert alert-info mt-4" role="alert">
+    <div class="alert alert-primary alert-dismissible fade show mt-2" role="alert">
       <%= flash.now[:notice] %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   <% end %>
   <% if flash.now[:alert] %>
-    <div class="alert alert-danger mt-4" role="alert">
+    <div class="alert alert-warning alert-dismissible fade show mt-2" role="alert">
       <%= flash.now[:alert] %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   <% end %>
-</div>
+</div>  

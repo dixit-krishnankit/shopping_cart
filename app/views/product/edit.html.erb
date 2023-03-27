@@ -1,0 +1,21 @@
+<div class="container py-2">
+  <%= form_with model: @product, url: update_product_path(@product) do |form| %>
+    <div class="mb-3">
+      <%= form.label :name, class: "form-label" %>
+      <%= form.text_field :name, class: "form-control", placeholder: "Product Name" %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :price, class: "form-label" %>
+      <%= form.number_field :price, class: "form-control", placeholder: "Product Price (should be number.)" %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :quantity, class: "form-label" %>
+      <%= form.number_field :quantity, class: "form-control", placeholder: "Product Quantity (should be integer)"%>
+    </div>
+    <div class="mb-3">
+      <%= form.label :description, class: "form-label" %>
+      <%= form.text_area :description, class: "form-control", placeholder: "Product Description" %>
+    </div>
+    <%= form.submit "Save changes", class: "btn btn-dark" %>
+  <% end %>
+</div>

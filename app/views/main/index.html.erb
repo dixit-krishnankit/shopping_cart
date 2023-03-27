@@ -1,3 +1,43 @@
-<div class="container">
-  <h1>Hello World!</h1>
+<div class="container py-2">
+  <h1>Welcome to shopping cart</h1>
+
+  <div class="d-sm-flex align-items-center justify-content-start flex-wrap">
+    <% @products.each do |product| %>
+      <div class="card bg-dark text-light w-25 align-self-center m-3">
+        <div class="card-body text-center">
+          <h1 class="card-title mb-3">
+            <%= product.name %>
+          </h1>
+          <div class="h3 mb-3">
+            ₹<%= product.price %>
+          </div>
+          <p class="card-text fw-bold">
+            Available qantity: <%= product.quantity %>
+          </p>
+          <p class="card-text">
+            <%= product.description %>
+          </p>
+          <%= button_to "Add to Cart", {:controller => "cart", :action => "add_product", product_id: product[:id]}, class: "btn btn-outline-light" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
+
+<%# <script>
+  addButtons = document.querySelectorAll(".add-to-cart")
+  addButtons.forEach (addButton => {
+    addButton.addEventListener("click", e => {addToCart(e)})
+  })
+
+  function addToCart(e) {
+    quantity = prompt("Enter the quantity.")
+    id = (e.target.value)
+    console.log(id)
+    console.log(quantity)
+
+    var http = new XMLHttpRequest()
+    http.open("POST", `/cart?product_id=${id}&quantity=${quantity}`, true)
+    http.send()
+  }
+</script> %>

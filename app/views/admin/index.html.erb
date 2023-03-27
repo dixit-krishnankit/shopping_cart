@@ -1,0 +1,22 @@
+<div class="container">
+  <h1>Welcome to Admin Dashboard</h1>
+
+  <div class="d-sm-flex align-items-center justify-content-start flex-wrap">
+    <% @products.each do |product| %>
+      <div class="card bg-dark text-light w-25 align-self-center m-3">
+        <div class="card-body text-center">
+          <h1 class="card-title mb-3">
+            <%= product[:name] %>
+          </h1>
+          <div class="h3 mb-3">
+            ₹<%= product[:price] %>
+          </div>
+              <p class="card-text">
+                <%= product[:description] %>
+              </p>
+          <%= link_to "Update Product", edit_product_path(product), class: "btn btn-outline-light" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

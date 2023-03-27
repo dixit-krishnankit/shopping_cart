@@ -1,0 +1,23 @@
+<div class="container py-2">
+  <h1>Your Cart:</h1>
+  <h2>Total Products: <%= @cart_items.length %></h2>
+  <h2>Total Amount: <%= Current.user.calculate_total %></h2>
+  <div class="d-sm-flex align-items-center justify-content-even flex-wrap">
+    <% @cart_items.each do |item| %>
+      <div class="card bg-dark text-light w-25 align-self-center m-2">
+        <div class="card-body text-center">
+          <h1 class="card-title mb-3">
+            <%= item[:name] %>
+          </h1>
+          <div class="h3 mb-3">
+            ₹<%= item[:price] %>
+          </div>
+              <p class="card-text">
+                Quantity: <%= item[:quantity] %>
+              </p>
+          <%= button_to "Delete", {:controller => "cart", :action => "delete", product_id: item[:product_id]}, :method => :delete, class: "btn btn-outline-light" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
